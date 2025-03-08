@@ -62,21 +62,21 @@ public class Database {
     }
     public void view(){
         System.out.println("========================================================================================");
-        System.out.printf("| %-8.8S  |","NIM");
-        System.out.printf(" %-20.20S |","NAMA");
-        System.out.printf(" %-20.20S |","ALAMAT");
-        System.out.printf(" %8.8S   |","SEMESTER");
-        System.out.printf(" %3.3S   |","SKS");
-        System.out.printf(" %4.4S   |%n","IPK");
+        System.out.printf("| %-8.8S  |", "NIM");
+        System.out.printf(" %-20.20S |", "NAMA");
+        System.out.printf(" %-20.20S |", "ALAMAT");
+        System.out.printf(" %8.8S    |", "SEMESTER");
+        System.out.printf(" %3.3S    |", "SKS");
+        System.out.printf(" %4.4S    |%n", "IPK");
         System.out.println("----------------------------------------------------------------------------------------");
         for (Mahasiswa mhs : Data){
-            System.out.printf("| %-8.8S    |", mhs.getNim());
+            System.out.printf("| %-8.8S  |", mhs.getNim());
             System.out.printf(" %-20.20S |", mhs.getNama());
             System.out.printf(" %-20.20S |", mhs.getAlamat());
-            System.out.printf(" %8.8S   |", mhs.getSemester());
-            System.out.printf(" %3.3S   |", mhs.getSks());
-            System.out.printf(" %4.4S   |%n", mhs.getIpk());
-            System.out.println();
+            System.out.printf(" %8.8S    |", mhs.getSemester());
+            System.out.printf(" %3.3S    |", mhs.getSks());
+            System.out.printf(" %4.4S    |%n", mhs.getIpk());
+
         }
         System.out.println("----------------------------------------------------------------------------------------");
     }

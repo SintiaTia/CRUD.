@@ -31,14 +31,18 @@ public class Database {
             for (int i = 1; i <lines.size(); i++) {
                 String line = lines.get(i);
                 String[]element= line.split(",");
-                 String nim = element[0];
-                 String nama = element[1];
-                 String alamat = element[2];
-                 int semester = Integer.parseInt(element[3]);
-                 int sks = Integer.parseInt(element[4]);
-                 double ipk = Double.parseDouble(element[5]);
-                 Mahasiswa mhs = new Mahasiswa(nim, nama, alamat, semester, sks, ipk);
-                 Data.add(mhs);
+                if (element.length >= 6) { // Pastikan baris memiliki minimal 6 elemen
+                    String nim = element[0];
+                    String nama = element[1];
+                    String alamat = element[2];
+                    int semester = Integer.parseInt(element[3]);
+                    int sks = Integer.parseInt(element[4]);
+                    double ipk = Double.parseDouble(element[5]);
+                    Mahasiswa mhs = new Mahasiswa(nim, nama, alamat, semester, sks, ipk);
+                    Data.add(mhs);
+                } else {
+                    System.err.println("Baris tidak lengkap: " + line); // Tampilkan pesan error
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -116,14 +120,14 @@ public class Database {
     }
 
     public boolean update(int index, String nim, String nama, String alamat, int semester, int sks, double ipk) {
-        boolean status = false;
-        if (!Data.isEmpty()){
-            //update
-            if (index >= 0 && index < Data.size()){
-                Mahasiswa mhs = new Mahasiswa(nim, nama, alamat, semester, sks, ipk);
-                Data.set(index, mhs);
-                save();
-                status = true;
+        boolean status = true;
+        if (!Data.isEmpty()) {
+            for (int i = 0; i < Data.size(); i++) {
+                if (Data.get(i).getNim().equalsIgnoreCase(nim)) {
+                    save();
+                    status = false;
+                    break;
+                }
             }
         }
         return status;
